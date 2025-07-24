@@ -19,7 +19,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       id: '1',
       title: 'iPhone 14 Pro Max 256GB Space Black',
       price: 899.0,
-      location: 'Berlin Mitte',
+      location: 'Bochum Mitte',
       imageUrl: 'https://picsum.photos/300/200?random=1',
       addedAt: DateTime.now().subtract(const Duration(hours: 2)),
       isAvailable: true,
@@ -243,9 +243,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         item.title,
                         style: context.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: item.isAvailable 
-                              ? null 
-                              : Colors.grey[600],
+                          color: item.isAvailable ? null : Colors.grey[600],
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -254,8 +252,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       Text(
                         '€${item.price.toStringAsFixed(0)}',
                         style: context.textTheme.titleMedium?.copyWith(
-                          color: item.isAvailable 
-                              ? context.theme.primaryColor 
+                          color: item.isAvailable
+                              ? context.theme.primaryColor
                               : Colors.grey[500],
                           fontWeight: FontWeight.w700,
                         ),
@@ -283,7 +281,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       Text(
                         'Hinzugefügt ${timeago.format(item.addedAt, locale: 'de')}',
                         style: context.textTheme.bodySmall?.copyWith(
-                          color: context.theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+                          color: context.theme.textTheme.bodySmall?.color
+                              ?.withOpacity(0.7),
                         ),
                       ),
                     ],
@@ -508,4 +507,3 @@ class FavoriteItem {
     required this.isAvailable,
   });
 }
-

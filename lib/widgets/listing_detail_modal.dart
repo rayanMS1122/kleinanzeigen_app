@@ -536,7 +536,7 @@ class _ListingDetailModalState extends State<ListingDetailModal> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'Berlin',
+                              'Bochum',
                               style: context.textTheme.bodySmall?.copyWith(
                                 color: context.theme.textTheme.bodySmall?.color,
                               ),

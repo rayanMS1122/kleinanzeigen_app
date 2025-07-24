@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       id: '1',
       title: 'iPhone 14 Pro Max 256GB Space Black',
       price: 899.0,
-      location: 'Berlin Mitte',
+      location: 'Bochum Mitte',
       timeAgo: DateTime.now().subtract(const Duration(hours: 2)),
       imageUrl: 'https://picsum.photos/300/200?random=1',
       isFavorite: false,
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(width: 8),
             Text(
-              'Berlin',
+              'Bochum',
               style: context.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -228,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildPromotedSection() {
     final promotedListings = listings.where((item) => item.isPromoted).toList();
-    
+
     if (promotedListings.isEmpty) return const SliverToBoxAdapter();
 
     return SliverToBoxAdapter(
@@ -365,9 +365,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             item.isFavorite
                                 ? Icons.favorite_rounded
                                 : Icons.favorite_border_rounded,
-                            color: item.isFavorite
-                                ? Colors.red
-                                : Colors.grey[600],
+                            color:
+                                item.isFavorite ? Colors.red : Colors.grey[600],
                             size: 18,
                           ),
                         ),
@@ -419,7 +418,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         timeago.format(item.timeAgo, locale: 'de'),
                         style: context.textTheme.bodySmall?.copyWith(
-                          color: context.theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+                          color: context.theme.textTheme.bodySmall?.color
+                              ?.withOpacity(0.7),
                         ),
                       ),
                     ],
@@ -450,10 +450,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             }
-            
+
             final listingIndex = index - 1;
             if (listingIndex >= listings.length) return null;
-            
+
             return AnimationConfiguration.staggeredList(
               position: listingIndex,
               duration: const Duration(milliseconds: 375),
@@ -579,7 +579,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     timeago.format(item.timeAgo, locale: 'de'),
                     style: context.textTheme.bodySmall?.copyWith(
-                      color: context.theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+                      color: context.theme.textTheme.bodySmall?.color
+                          ?.withOpacity(0.7),
                     ),
                   ),
                 ],
@@ -596,9 +597,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 item.isFavorite
                     ? Icons.favorite_rounded
                     : Icons.favorite_border_rounded,
-                color: item.isFavorite
-                    ? Colors.red
-                    : Colors.grey[400],
+                color: item.isFavorite ? Colors.red : Colors.grey[400],
                 size: 24,
               ),
             ),
@@ -638,4 +637,3 @@ class ListingItem {
     required this.isPromoted,
   });
 }
-

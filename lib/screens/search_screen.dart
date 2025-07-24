@@ -18,12 +18,21 @@ class _SearchScreenState extends State<SearchScreen> {
   String _sortBy = 'Neueste';
 
   final List<String> categories = [
-    'Alle', 'Auto', 'Möbel', 'Elektronik', 'Kleidung', 
-    'Sport', 'Bücher', 'Haushalt'
+    'Alle',
+    'Auto',
+    'Möbel',
+    'Elektronik',
+    'Kleidung',
+    'Sport',
+    'Bücher',
+    'Haushalt'
   ];
 
   final List<String> sortOptions = [
-    'Neueste', 'Preis aufsteigend', 'Preis absteigend', 'Entfernung'
+    'Neueste',
+    'Preis aufsteigend',
+    'Preis absteigend',
+    'Entfernung'
   ];
 
   @override
@@ -123,7 +132,7 @@ class _SearchScreenState extends State<SearchScreen> {
         itemBuilder: (context, index) {
           final category = categories[index];
           final isSelected = category == _selectedCategory;
-          
+
           return Container(
             margin: const EdgeInsets.only(right: 8),
             child: FilterChip(
@@ -138,16 +147,16 @@ class _SearchScreenState extends State<SearchScreen> {
               selectedColor: context.theme.primaryColor.withOpacity(0.1),
               checkmarkColor: context.theme.primaryColor,
               labelStyle: TextStyle(
-                color: isSelected 
-                    ? context.theme.primaryColor 
+                color: isSelected
+                    ? context.theme.primaryColor
                     : context.theme.textTheme.bodyMedium?.color,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
                 side: BorderSide(
-                  color: isSelected 
-                      ? context.theme.primaryColor 
+                  color: isSelected
+                      ? context.theme.primaryColor
                       : Colors.grey.shade300,
                 ),
               ),
@@ -239,7 +248,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Berlin • vor ${index + 1} Stunden',
+                    'Bochum • vor ${index + 1} Stunden',
                     style: context.textTheme.bodySmall,
                   ),
                 ],
@@ -390,21 +399,23 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
             ),
-            ...sortOptions.map((option) => ListTile(
-              title: Text(option),
-              trailing: _sortBy == option 
-                  ? Icon(
-                      Icons.check_rounded,
-                      color: context.theme.primaryColor,
-                    )
-                  : null,
-              onTap: () {
-                setState(() {
-                  _sortBy = option;
-                });
-                Navigator.pop(context);
-              },
-            )).toList(),
+            ...sortOptions
+                .map((option) => ListTile(
+                      title: Text(option),
+                      trailing: _sortBy == option
+                          ? Icon(
+                              Icons.check_rounded,
+                              color: context.theme.primaryColor,
+                            )
+                          : null,
+                      onTap: () {
+                        setState(() {
+                          _sortBy = option;
+                        });
+                        Navigator.pop(context);
+                      },
+                    ))
+                .toList(),
             const SizedBox(height: 16),
           ],
         ),
@@ -418,4 +429,3 @@ class _SearchScreenState extends State<SearchScreen> {
     super.dispose();
   }
 }
-

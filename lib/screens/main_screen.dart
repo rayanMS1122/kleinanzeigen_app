@@ -59,11 +59,10 @@ class _MainScreenState extends State<MainScreen> {
         currentIndex: _currentIndex,
         onTap: _onNavTap,
       ).animate().slideY(
-        begin: 1,
-        duration: 600.ms,
-        curve: Curves.easeOutBack,
-      ),
+            begin: 1,
+            duration: 600.ms,
+            curve: Curves.easeOutBack,
+          ),
     );
   }
 }
-

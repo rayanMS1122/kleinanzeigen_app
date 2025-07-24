@@ -16,7 +16,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
   final PageController _pageController = PageController();
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   int _currentStep = 0;
-  
+
   final List<String> _stepTitles = [
     'Kategorie',
     'Details',
@@ -26,8 +26,14 @@ class _AddListingScreenState extends State<AddListingScreen> {
   ];
 
   final List<String> categories = [
-    'Auto', 'Möbel', 'Elektronik', 'Kleidung', 
-    'Sport', 'Bücher', 'Haushalt', 'Sonstiges'
+    'Auto',
+    'Möbel',
+    'Elektronik',
+    'Kleidung',
+    'Sport',
+    'Bücher',
+    'Haushalt',
+    'Sonstiges'
   ];
 
   List<String> selectedImages = [];
@@ -87,7 +93,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
             children: List.generate(_stepTitles.length, (index) {
               final isActive = index == _currentStep;
               final isCompleted = index < _currentStep;
-              
+
               return Expanded(
                 child: Container(
                   height: 4,
@@ -143,46 +149,48 @@ class _AddListingScreenState extends State<AddListingScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.zero,
             ),
-            options: categories.map((category) => 
-              FormBuilderFieldOption(
-                value: category,
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  margin: const EdgeInsets.only(bottom: 12),
-                  decoration: BoxDecoration(
-                    color: context.theme.cardColor,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: Colors.grey.shade300,
-                      width: 1,
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        _getCategoryIcon(category),
-                        color: context.theme.primaryColor,
-                        size: 24,
-                      ),
-                      const SizedBox(width: 16),
-                      Text(
-                        category,
-                        style: context.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w500,
+            options: categories
+                .map(
+                  (category) => FormBuilderFieldOption(
+                    value: category,
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      margin: const EdgeInsets.only(bottom: 12),
+                      decoration: BoxDecoration(
+                        color: context.theme.cardColor,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: Colors.grey.shade300,
+                          width: 1,
                         ),
                       ),
-                      const Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.grey.shade400,
-                        size: 16,
+                      child: Row(
+                        children: [
+                          Icon(
+                            _getCategoryIcon(category),
+                            color: context.theme.primaryColor,
+                            size: 24,
+                          ),
+                          const SizedBox(width: 16),
+                          Text(
+                            category,
+                            style: context.textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.grey.shade400,
+                            size: 16,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ).toList(),
+                )
+                .toList(),
             validator: FormBuilderValidators.required(
               errorText: 'Bitte wähle eine Kategorie',
             ),
@@ -224,8 +232,10 @@ class _AddListingScreenState extends State<AddListingScreen> {
               fillColor: context.theme.cardColor,
             ),
             validator: FormBuilderValidators.compose([
-              FormBuilderValidators.required(errorText: 'Titel ist erforderlich'),
-              FormBuilderValidators.minLength(5, errorText: 'Mindestens 5 Zeichen'),
+              FormBuilderValidators.required(
+                  errorText: 'Titel ist erforderlich'),
+              FormBuilderValidators.minLength(5,
+                  errorText: 'Mindestens 5 Zeichen'),
             ]),
           ),
           const SizedBox(height: 16),
@@ -242,8 +252,10 @@ class _AddListingScreenState extends State<AddListingScreen> {
             ),
             maxLines: 5,
             validator: FormBuilderValidators.compose([
-              FormBuilderValidators.required(errorText: 'Beschreibung ist erforderlich'),
-              FormBuilderValidators.minLength(20, errorText: 'Mindestens 20 Zeichen'),
+              FormBuilderValidators.required(
+                  errorText: 'Beschreibung ist erforderlich'),
+              FormBuilderValidators.minLength(20,
+                  errorText: 'Mindestens 20 Zeichen'),
             ]),
           ),
           const SizedBox(height: 16),
@@ -261,9 +273,11 @@ class _AddListingScreenState extends State<AddListingScreen> {
             ),
             keyboardType: TextInputType.number,
             validator: FormBuilderValidators.compose([
-              FormBuilderValidators.required(errorText: 'Preis ist erforderlich'),
+              FormBuilderValidators.required(
+                  errorText: 'Preis ist erforderlich'),
               FormBuilderValidators.numeric(errorText: 'Nur Zahlen erlaubt'),
-              FormBuilderValidators.min(0, errorText: 'Preis muss positiv sein'),
+              FormBuilderValidators.min(0,
+                  errorText: 'Preis muss positiv sein'),
             ]),
           ),
           const SizedBox(height: 16),
@@ -283,10 +297,12 @@ class _AddListingScreenState extends State<AddListingScreen> {
               'Gut',
               'Akzeptabel',
               'Defekt',
-            ].map((condition) => DropdownMenuItem(
-              value: condition,
-              child: Text(condition),
-            )).toList(),
+            ]
+                .map((condition) => DropdownMenuItem(
+                      value: condition,
+                      child: Text(condition),
+                    ))
+                .toList(),
             validator: FormBuilderValidators.required(
               errorText: 'Bitte wähle einen Zustand',
             ),
@@ -458,7 +474,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
             name: 'location',
             decoration: InputDecoration(
               labelText: 'Adresse oder PLZ *',
-              hintText: 'z.B. 10115 Berlin',
+              hintText: 'z.B. 10115 Bochum',
               prefixIcon: const Icon(Icons.location_on_rounded),
               suffixIcon: IconButton(
                 onPressed: _getCurrentLocation,
@@ -563,7 +579,8 @@ class _AddListingScreenState extends State<AddListingScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _formKey.currentState?.fields['title']?.value ?? 'Titel',
+                        _formKey.currentState?.fields['title']?.value ??
+                            'Titel',
                         style: context.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
@@ -588,7 +605,8 @@ class _AddListingScreenState extends State<AddListingScreen> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            _formKey.currentState?.fields['location']?.value ?? 'Standort',
+                            _formKey.currentState?.fields['location']?.value ??
+                                'Standort',
                             style: context.textTheme.bodySmall,
                           ),
                         ],
@@ -597,7 +615,8 @@ class _AddListingScreenState extends State<AddListingScreen> {
                       Text(
                         'vor wenigen Sekunden',
                         style: context.textTheme.bodySmall?.copyWith(
-                          color: context.theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+                          color: context.theme.textTheme.bodySmall?.color
+                              ?.withOpacity(0.7),
                         ),
                       ),
                     ],
@@ -629,11 +648,11 @@ class _AddListingScreenState extends State<AddListingScreen> {
           if (_currentStep > 0) const SizedBox(width: 16),
           Expanded(
             child: GFButton(
-              onPressed: _currentStep < _stepTitles.length - 1 
-                  ? _nextStep 
+              onPressed: _currentStep < _stepTitles.length - 1
+                  ? _nextStep
                   : _publishListing,
-              text: _currentStep < _stepTitles.length - 1 
-                  ? 'Weiter' 
+              text: _currentStep < _stepTitles.length - 1
+                  ? 'Weiter'
                   : 'Veröffentlichen',
               size: GFSize.LARGE,
               shape: GFButtonShape.pills,
@@ -670,9 +689,9 @@ class _AddListingScreenState extends State<AddListingScreen> {
         return _formKey.currentState?.fields['category']?.validate() ?? false;
       case 1:
         return _formKey.currentState?.fields['title']?.validate() == true &&
-               _formKey.currentState?.fields['description']?.validate() == true &&
-               _formKey.currentState?.fields['price']?.validate() == true &&
-               _formKey.currentState?.fields['condition']?.validate() == true;
+            _formKey.currentState?.fields['description']?.validate() == true &&
+            _formKey.currentState?.fields['price']?.validate() == true &&
+            _formKey.currentState?.fields['condition']?.validate() == true;
       case 2:
         return selectedImages.isNotEmpty;
       case 3:
@@ -728,14 +747,22 @@ class _AddListingScreenState extends State<AddListingScreen> {
 
   IconData _getCategoryIcon(String category) {
     switch (category) {
-      case 'Auto': return Icons.directions_car_rounded;
-      case 'Möbel': return Icons.chair_rounded;
-      case 'Elektronik': return Icons.devices_rounded;
-      case 'Kleidung': return Icons.checkroom_rounded;
-      case 'Sport': return Icons.sports_soccer_rounded;
-      case 'Bücher': return Icons.menu_book_rounded;
-      case 'Haushalt': return Icons.home_rounded;
-      default: return Icons.category_rounded;
+      case 'Auto':
+        return Icons.directions_car_rounded;
+      case 'Möbel':
+        return Icons.chair_rounded;
+      case 'Elektronik':
+        return Icons.devices_rounded;
+      case 'Kleidung':
+        return Icons.checkroom_rounded;
+      case 'Sport':
+        return Icons.sports_soccer_rounded;
+      case 'Bücher':
+        return Icons.menu_book_rounded;
+      case 'Haushalt':
+        return Icons.home_rounded;
+      default:
+        return Icons.category_rounded;
     }
   }
 
@@ -745,4 +772,3 @@ class _AddListingScreenState extends State<AddListingScreen> {
     super.dispose();
   }
 }
-
